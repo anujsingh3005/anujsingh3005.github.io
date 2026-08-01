@@ -15,6 +15,9 @@ dist-ssr
 # Original resume source file (a copy lives in public/resume.pdf, which is what the site serves)
 /Anuj_Singh_Microsoft.pdf
 
+# Original profile photo source (an optimized copy lives in public/images/profile.jpg)
+/image.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

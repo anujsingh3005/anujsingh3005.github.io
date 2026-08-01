@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560">
+  <rect width="800" height="560" fill="#f4f4f2"/>
+  <rect x="24" y="24" width="752" height="512" fill="none" stroke="#0c0c0d" stroke-width="3"/>
+  <rect x="38" y="38" width="724" height="484" fill="none" stroke="#0c0c0d" stroke-width="1"/>
+
+  <text x="400" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="20" letter-spacing="6" fill="#6b6b6b">CERTIFICATE</text>
+  <text x="400" y="160" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="bold" fill="#0c0c0d">Of Completion</text>
+
+  <line x1="300" y1="190" x2="500" y2="190" stroke="#0c0c0d" stroke-width="1.5"/>
+
+  <text x="400" y="240" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#6b6b6b">This certifies that</text>
+  <text x="400" y="285" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-style="italic" fill="#0c0c0d">Anuj Singh</text>
+  <text x="400" y="325" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#6b6b6b">has successfully completed the program</text>
+  <text x="400" y="352" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#0c0c0d">Software Development Internship</text>
+
+  <circle cx="400" cy="440" r="38" fill="none" stroke="#0c0c0d" stroke-width="2"/>
+  <circle cx="400" cy="440" r="30" fill="none" stroke="#0c0c0d" stroke-width="1"/>
+  <text x="400" y="446" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#0c0c0d">SEAL</text>
+
+  <line x1="150" y1="480" x2="280" y2="480" stroke="#0c0c0d" stroke-width="1"/>
+  <text x="215" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#6b6b6b">Date</text>
+
+  <line x1="520" y1="480" x2="650" y2="480" stroke="#0c0c0d" stroke-width="1"/>
+  <text x="585" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#6b6b6b">Signature</text>
+</svg>

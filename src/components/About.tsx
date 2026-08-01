@@ -13,13 +13,11 @@ export function About() {
       <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_1.3fr] md:items-start">
         <Reveal delay={0.1}>
           <div className="aspect-square w-full max-w-xs overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-            {/* TODO: replace with a real photo, e.g. <img src="/images/avatar.jpg" alt={profile.name} className="h-full w-full object-cover" /> */}
-            <div className="flex h-full w-full items-center justify-center font-[family-name:var(--font-display)] text-6xl text-[var(--color-text-muted)]">
-              {profile.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')}
-            </div>
+            <img
+              src={profile.photoUrl}
+              alt={profile.name}
+              className="h-full w-full object-cover object-top"
+            />
           </div>
         </Reveal>
 

@@ -50,7 +50,7 @@ export function Contact() {
             />
             <button
               type="submit"
-              className="self-start rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-105"
+              className="self-start rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-[var(--color-bg)] transition-transform hover:scale-105"
             >
               Send message
             </button>

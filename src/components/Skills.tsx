@@ -1,4 +1,5 @@
-import { skills } from '../data/skills';
+import { skillCategories } from '../data/skills';
+import { SkillBadge } from './SkillBadge';
 import { Reveal } from './Reveal';
 
 export function Skills() {
@@ -13,21 +14,21 @@ export function Skills() {
         </h2>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
-        {skills.map((group, i) => (
+      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {skillCategories.map((group, i) => (
           <Reveal key={group.category} delay={i * 0.08}>
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
+            <div className="h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+              <h3 className="mb-5 text-sm font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
                 {group.category}
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-x-6 gap-y-5">
                 {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-1.5 text-sm text-[var(--color-text)]"
-                  >
-                    {item}
-                  </span>
+                  <div key={item.name} className="flex w-16 flex-col items-center gap-2 text-center">
+                    <div className="text-[var(--color-text)]">
+                      <SkillBadge type={item.badge} size={40} />
+                    </div>
+                    <span className="text-xs leading-tight text-[var(--color-text-muted)]">{item.name}</span>
+                  </div>
                 ))}
               </div>
             </div>
