@@ -35,7 +35,7 @@ export const experience: ExperienceItem[] = [
     org: 'Dr. Sengupta & Associates (DRSGA)',
     period: 'Dec 2025 — Jan 2026',
     status: 'Internship',
-    stats: [{ value: '3', label: 'Projects shipped' }],
+    stats: [{ value: '1', label: 'Projects shipped' }],
     achievements: [
       'Engineered a cross-platform learning ecosystem (Flutter, Node.js, MongoDB) to streamline client workflows.',
       'Integrated a Botpress AI agent to automate client interactions and deployed a real-time admin dashboard for centralized content management.',
@@ -48,7 +48,7 @@ export const experience: ExperienceItem[] = [
     org: 'XpertPACE Technologies Pvt. Ltd.',
     period: 'Aug 2025 — Dec 2025',
     status: 'Internship',
-    stats: [{ value: '2', label: 'Projects shipped' }],
+    stats: [{ value: '1', label: 'Projects shipped' }],
     achievements: [
       'Built the Medical Representative Visit Tracking Application, an enterprise-grade Flutter solution for the pharmaceutical industry with cross-platform mobile UI and state management.',
       'Implemented backend REST APIs, authentication, and role-based access control using Node.js, Express.js, PostgreSQL, and Supabase (RPC functions, Row Level Security).',
