@@ -1,44 +1,87 @@
-export interface Certification {
+export interface CertAward {
   title: string;
-  issuer: string;
-  date: string;
   type: 'certification' | 'award';
-  url?: string;
+  date?: string;
+  issuer?: string;
+  instructors?: string;
+  score?: string;
+  duration?: string;
+  result?: string;
+  project?: string;
+  venue?: string;
+  details?: string;
+  certificateUrl?: string;
   image?: string;
 }
 
-// TODO: replace with your real certifications and awards, most recent first.
-// `url` should point to the certificate/credential itself; `image` is shown
-// on hover — swap the placeholder for a real photo/scan of the certificate.
-export const certifications: Certification[] = [
+// Most recent first within each group. `certificateUrl` points to a proof
+// PDF in public/docs; `image` (only set where a real photo exists) shows on
+// hover.
+export const awards: CertAward[] = [
   {
-    title: 'AWS Certified Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    date: '2025',
-    type: 'certification',
-    url: 'https://example.com/certificate/aws-cloud-practitioner',
-    image: '/images/certificate-placeholder.svg',
-  },
-  {
-    title: 'Meta Front-End Developer Professional Certificate',
-    issuer: 'Meta (Coursera)',
-    date: '2024',
-    type: 'certification',
-    url: 'https://example.com/certificate/meta-frontend',
-    image: '/images/certificate-placeholder.svg',
-  },
-  {
-    title: 'Winner — University Hackathon',
-    issuer: 'University Name',
-    date: '2024',
+    title: 'Aether National Students Conference (NSC-ETT)',
     type: 'award',
-    image: '/images/certificate-placeholder.svg',
+    result: 'Winner — 1st Place, Poster Presentation',
+    project: 'Cultural Heritage Preservation Through Digital Technologies',
+    date: 'Sep 26, 2025',
+    venue: 'Thakur College of Engineering & Technology (TCET), Mumbai',
+    details:
+      'Presented a poster on using 3D photogrammetry, AR, and AI to protect and democratize access to cultural heritage. Team led by Suhani Singh.',
+    certificateUrl: '/docs/aether-nsc-ett-certificate.pdf',
+    image: '/images/aether-nsc-ett-award.jpg',
   },
   {
-    title: "Dean's List — Academic Excellence",
-    issuer: 'University Name',
-    date: '2023',
+    title: 'DIPEX 2025',
     type: 'award',
-    image: '/images/certificate-placeholder.svg',
+    result: 'Finalist — Reached Round 3 (Final Round), State-Level Exhibition-cum-Competition',
+    project: 'Alertica — AI-powered Women Safety App',
+    date: 'Apr 3–6, 2025',
+    venue: 'COEP Technological University, Pune',
+    details:
+      'Presented a safety app featuring silent SOS, real-time alerts, and offline SMS notifications; received strong feedback from judges and industry experts. Organized by ABVP & COEP Technological University.',
+    certificateUrl: '/docs/dipex-2025-certificate.pdf',
+  },
+  {
+    title: 'Hackanova',
+    type: 'award',
+    result: 'Finalist',
+    venue: 'TCET (National Level)',
+    certificateUrl: '/docs/hackanova-certificate.pdf',
+  },
+  {
+    title: 'InnovGenius Hackathon',
+    type: 'award',
+    result: 'Finalist',
+    venue: 'Organized by TCET ACM SIGAI & SIGIT',
+    // TODO: no certificate uploaded yet — send project name/date when available.
+  },
+];
+
+export const certifications: CertAward[] = [
+  {
+    title: 'The Complete Full-Stack Web Development Bootcamp',
+    type: 'certification',
+    issuer: 'Udemy',
+    instructors: 'Dr. Angela Yu',
+    date: 'Jan 17, 2026',
+    duration: '62 hours',
+    certificateUrl: '/docs/webdev-bootcamp-certificate.pdf',
+  },
+  {
+    title: 'Machine Learning A-Z: AI, Python & R + ChatGPT Prize',
+    type: 'certification',
+    issuer: 'Udemy',
+    instructors: 'Kirill Eremenko, Hadelin de Ponteves, SuperDataScience Team, Ligency Team',
+    date: 'Apr 26, 2024',
+    duration: '43 hours',
+    certificateUrl: '/docs/ml-az-udemy-certificate.pdf',
+  },
+  {
+    title: 'Python 3.4.3 Training',
+    type: 'certification',
+    issuer: 'Spoken Tutorial Project, IIT Bombay',
+    date: 'Mar 1, 2024',
+    score: '73.71% (4 Credits)',
+    certificateUrl: '/docs/python-spoken-tutorial-certificate.pdf',
   },
 ];
