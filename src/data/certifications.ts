@@ -14,9 +14,11 @@ export interface CertAward {
   image?: string;
 }
 
+const PLACEHOLDER_IMAGE = '/images/certificate-placeholder.svg';
+
 // Most recent first within each group. `certificateUrl` points to a proof
-// PDF in public/docs; `image` (only set where a real photo exists) shows on
-// hover.
+// PDF in public/docs. `image` is shown on hover for every entry — a real
+// photo where we have one, otherwise the placeholder graphic.
 export const awards: CertAward[] = [
   {
     title: 'Aether National Students Conference (NSC-ETT)',
@@ -40,6 +42,7 @@ export const awards: CertAward[] = [
     details:
       'Presented a safety app featuring silent SOS, real-time alerts, and offline SMS notifications; received strong feedback from judges and industry experts. Organized by ABVP & COEP Technological University.',
     certificateUrl: '/docs/dipex-2025-certificate.pdf',
+    image: '/images/dipex-2025-photo.jpg',
   },
   {
     title: 'Hackanova',
@@ -47,12 +50,14 @@ export const awards: CertAward[] = [
     result: 'Finalist',
     venue: 'TCET (National Level)',
     certificateUrl: '/docs/hackanova-certificate.pdf',
+    image: '/images/hackanova-photo.jpg',
   },
   {
     title: 'InnovGenius Hackathon',
     type: 'award',
     result: 'Finalist',
     venue: 'Organized by TCET ACM SIGAI & SIGIT',
+    image: PLACEHOLDER_IMAGE,
     // TODO: no certificate uploaded yet — send project name/date when available.
   },
 ];
@@ -66,6 +71,7 @@ export const certifications: CertAward[] = [
     date: 'Jan 17, 2026',
     duration: '62 hours',
     certificateUrl: '/docs/webdev-bootcamp-certificate.pdf',
+    image: PLACEHOLDER_IMAGE,
   },
   {
     title: 'Machine Learning A-Z: AI, Python & R + ChatGPT Prize',
@@ -75,6 +81,7 @@ export const certifications: CertAward[] = [
     date: 'Apr 26, 2024',
     duration: '43 hours',
     certificateUrl: '/docs/ml-az-udemy-certificate.pdf',
+    image: PLACEHOLDER_IMAGE,
   },
   {
     title: 'Python 3.4.3 Training',
@@ -83,5 +90,6 @@ export const certifications: CertAward[] = [
     date: 'Mar 1, 2024',
     score: '73.71% (4 Credits)',
     certificateUrl: '/docs/python-spoken-tutorial-certificate.pdf',
+    image: PLACEHOLDER_IMAGE,
   },
 ];
