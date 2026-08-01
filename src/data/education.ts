@@ -23,7 +23,7 @@ export const education: EducationItem[] = [
     degree: 'B.Tech, Artificial Intelligence & Machine Learning',
     institution: 'Thakur College of Engineering & Technology (TCET), Mumbai',
     period: '2023 — 2027 (Expected)',
-    score: 'CGPA: 8.45 / 10 (through Sem 6)',
+    score: 'CGPA: 9.68 / 10 (through Sem 6)',
     coursework: [
       'Data Structures & Algorithms',
       'Machine Learning',
@@ -35,12 +35,12 @@ export const education: EducationItem[] = [
       'System Design',
     ],
     semesters: [
-      { label: 'Sem 1', cgpa: '8.2' },
-      { label: 'Sem 2', cgpa: '8.4' },
-      { label: 'Sem 3', cgpa: '8.3' },
-      { label: 'Sem 4', cgpa: '8.6' },
-      { label: 'Sem 5', cgpa: '8.5' },
-      { label: 'Sem 6', cgpa: '8.7' },
+      { label: 'Sem 1', cgpa: '9.18' },
+      { label: 'Sem 2', cgpa: '9.67' },
+      { label: 'Sem 3', cgpa: '9.68' },
+      { label: 'Sem 4', cgpa: '9.95' },
+      { label: 'Sem 5', cgpa: '9.86' },
+      { label: 'Sem 6', cgpa: '9.77' },
     ],
   },
 ];
