@@ -14,11 +14,11 @@ export interface CertAward {
   image?: string;
 }
 
-const PLACEHOLDER_IMAGE = '/images/certificate-placeholder.svg';
-
 // Most recent first within each group. `certificateUrl` points to a proof
-// PDF in public/docs. `image` is shown on hover for every entry — a real
-// photo where we have one, otherwise the placeholder graphic.
+// PDF in public/docs. `image` is shown on hover — a real event photo where
+// we have one, otherwise a rendered preview of the actual certificate PDF
+// (same document as `certificateUrl`). Entries with no real certificate at
+// all (e.g. InnovGenius) omit `image` entirely rather than faking one.
 export const awards: CertAward[] = [
   {
     title: 'Aether National Students Conference (NSC-ETT)',
@@ -57,7 +57,6 @@ export const awards: CertAward[] = [
     type: 'award',
     result: 'Finalist',
     venue: 'Organized by TCET ACM SIGAI & SIGIT',
-    image: PLACEHOLDER_IMAGE,
     // TODO: no certificate uploaded yet — send project name/date when available.
   },
 ];
@@ -71,7 +70,7 @@ export const certifications: CertAward[] = [
     date: 'Jan 17, 2026',
     duration: '62 hours',
     certificateUrl: '/docs/webdev-bootcamp-certificate.pdf',
-    image: PLACEHOLDER_IMAGE,
+    image: '/images/webdev-bootcamp-certificate.jpg',
   },
   {
     title: 'Machine Learning A-Z: AI, Python & R + ChatGPT Prize',
@@ -81,7 +80,7 @@ export const certifications: CertAward[] = [
     date: 'Apr 26, 2024',
     duration: '43 hours',
     certificateUrl: '/docs/ml-az-udemy-certificate.pdf',
-    image: PLACEHOLDER_IMAGE,
+    image: '/images/ml-az-udemy-certificate.jpg',
   },
   {
     title: 'Python 3.4.3 Training',
@@ -90,6 +89,6 @@ export const certifications: CertAward[] = [
     date: 'Mar 1, 2024',
     score: '73.71% (4 Credits)',
     certificateUrl: '/docs/python-spoken-tutorial-certificate.pdf',
-    image: PLACEHOLDER_IMAGE,
+    image: '/images/python-spoken-tutorial-certificate.jpg',
   },
 ];
