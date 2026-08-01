@@ -7,7 +7,7 @@ export function Footer() {
         <p>
           © {new Date().getFullYear()} {profile.name}. All rights reserved.
         </p>
-        <p>Built with React, Vite &amp; Tailwind CSS.</p>
+        <p>"Passion turns potential into performance. Give me a purpose, and my drive will handle the rest."</p>
       </div>
     </footer>
   );
