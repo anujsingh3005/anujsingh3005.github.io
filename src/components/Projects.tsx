@@ -1,6 +1,7 @@
-import { ExternalLink } from 'lucide-react';
+import { useState } from 'react';
 import { projects } from '../data/projects';
 import { GithubIcon } from './BrandIcons';
+import { CodeDisabledNotice } from './CodeDisabledNotice';
 import { Reveal } from './Reveal';
 
 function openProjectDetail(slug: string) {
@@ -9,6 +10,8 @@ function openProjectDetail(slug: string) {
 }
 
 export function Projects() {
+  const [noticeOpen, setNoticeOpen] = useState(false);
+
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-28">
       <Reveal>
@@ -37,26 +40,26 @@ export function Projects() {
                 {project.image ? (
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={project.name}
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center font-[family-name:var(--font-display)] text-2xl text-[var(--color-text-muted)]">
-                    {project.title}
+                  <div className="flex h-full w-full items-center justify-center px-4 text-center font-[family-name:var(--font-display)] text-2xl text-[var(--color-text-muted)]">
+                    {project.name}
                   </div>
                 )}
               </div>
 
               <div className="flex flex-1 flex-col p-6">
                 <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-[var(--color-text)] transition-colors group-hover:text-[var(--color-accent)]">
-                  {project.title}
+                  {project.name}
                 </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                   {project.summary}
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
+                  {project.tags.slice(0, 4).map((tag) => (
                     <span
                       key={tag}
                       className="rounded-full bg-[var(--color-accent-soft)] px-2.5 py-1 text-xs font-medium text-[var(--color-accent)]"
@@ -64,39 +67,33 @@ export function Projects() {
                       {tag}
                     </span>
                   ))}
+                  {project.tags.length > 4 && (
+                    <span className="rounded-full bg-[var(--color-accent-soft)] px-2.5 py-1 text-xs font-medium text-[var(--color-accent)]">
+                      +{project.tags.length - 4}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-5 flex items-center gap-4">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
-                    >
-                      <ExternalLink size={14} />
-                      Live
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
-                    >
-                      <GithubIcon size={14} />
-                      Code
-                    </a>
-                  )}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setNoticeOpen(true);
+                    }}
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent)]"
+                  >
+                    <GithubIcon size={14} />
+                    Code
+                  </button>
                 </div>
               </div>
             </div>
           </Reveal>
         ))}
       </div>
+
+      <CodeDisabledNotice open={noticeOpen} onClose={() => setNoticeOpen(false)} />
     </section>
   );
 }

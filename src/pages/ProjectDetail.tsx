@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
-import { profile } from '../data/profile';
+import { ArrowLeft, Check, Users } from 'lucide-react';
 import { projects } from '../data/projects';
+import { profile } from '../data/profile';
 import { GithubIcon } from '../components/BrandIcons';
+import { CodeDisabledNotice } from '../components/CodeDisabledNotice';
 import { ThemeToggle } from '../components/ThemeToggle';
 import { Reveal } from '../components/Reveal';
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = projects.find((p) => p.slug === slug);
+  const [noticeOpen, setNoticeOpen] = useState(false);
 
   if (!project) {
     return (
@@ -24,6 +27,8 @@ export function ProjectDetail() {
       </main>
     );
   }
+
+  const metaLine = [project.timeline, project.deployedAt ?? project.platform].filter(Boolean).join(' · ');
 
   return (
     <div className="min-h-screen">
@@ -45,10 +50,23 @@ export function ProjectDetail() {
           <p className="mb-3 text-sm font-medium uppercase tracking-widest text-[var(--color-accent)]">
             Project
           </p>
-          <h1 className="text-balance font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-[var(--color-text)] sm:text-5xl">
+          <h1 className="text-balance font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
             {project.title}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-muted)]">{project.summary}</p>
+          <p className="mt-3 text-lg leading-relaxed text-[var(--color-text-muted)]">{project.tagline}</p>
+          {metaLine && <p className="mt-2 text-sm text-[var(--color-text-muted)]">{metaLine}</p>}
+
+          {project.teamNote && (
+            <p className="mt-4 flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+              <Users size={15} className="mt-0.5 flex-shrink-0" />
+              {project.teamNote}
+            </p>
+          )}
+          {project.contribution && (
+            <p className="mt-2 text-sm font-medium text-[var(--color-accent)]">
+              Your contribution: {project.contribution}
+            </p>
+          )}
 
           <div className="mt-6 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
@@ -62,28 +80,14 @@ export function ProjectDetail() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-[var(--color-bg)] transition-transform hover:scale-105"
-              >
-                <ExternalLink size={15} />
-                View live
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-5 py-2.5 text-sm font-medium text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-              >
-                <GithubIcon size={15} />
-                View code
-              </a>
-            )}
+            <button
+              type="button"
+              onClick={() => setNoticeOpen(true)}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-5 py-2.5 text-sm font-medium text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+            >
+              <GithubIcon size={15} />
+              View code
+            </button>
           </div>
         </Reveal>
 
@@ -98,40 +102,49 @@ export function ProjectDetail() {
         <Reveal delay={0.15}>
           <div className="mt-12">
             <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text)]">
-              Objective
+              System Overview
             </h2>
-            <p className="mt-3 leading-relaxed text-[var(--color-text-muted)]">{project.objective}</p>
+            <p className="mt-3 leading-relaxed text-[var(--color-text-muted)]">{project.overview}</p>
           </div>
         </Reveal>
 
-        <Reveal delay={0.2}>
-          <div className="mt-12">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text)]">
-              Approach
-            </h2>
-            <ol className="mt-4 space-y-4">
-              {project.approach.map((step, i) => (
-                <li key={step} className="flex gap-4">
-                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] text-xs font-medium text-[var(--color-text-muted)]">
-                    {i + 1}
-                  </span>
-                  <span className="pt-0.5 leading-relaxed text-[var(--color-text)]">{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
+        {project.featureGroups.map((group, gi) => (
+          <Reveal key={group.heading} delay={0.18 + gi * 0.05}>
+            <div className="mt-12">
+              <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text)]">
+                {group.heading}
+              </h2>
+              <ul className="mt-4 space-y-3">
+                {group.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Check size={16} className="mt-0.5 flex-shrink-0 text-[var(--color-accent)]" />
+                    <span className="leading-relaxed text-[var(--color-text)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
 
-        <Reveal delay={0.25}>
-          <div className="mt-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8">
-            <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text)]">
-              Outcome
-            </h2>
-            <p className="mt-3 leading-relaxed text-[var(--color-text-muted)]">{project.outcome}</p>
-          </div>
-        </Reveal>
+        {project.extraSection && (
+          <Reveal delay={0.3}>
+            <div className="mt-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8">
+              <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold text-[var(--color-text)]">
+                {project.extraSection.heading}
+              </h2>
+              <ul className="mt-4 space-y-3">
+                {project.extraSection.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Check size={16} className="mt-0.5 flex-shrink-0 text-[var(--color-accent)]" />
+                    <span className="leading-relaxed text-[var(--color-text)]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        )}
 
-        <Reveal delay={0.3}>
+        <Reveal delay={0.35}>
           <Link
             to="/"
             className="mt-14 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-accent)]"
@@ -141,6 +154,8 @@ export function ProjectDetail() {
           </Link>
         </Reveal>
       </main>
+
+      <CodeDisabledNotice open={noticeOpen} onClose={() => setNoticeOpen(false)} />
     </div>
   );
 }
