@@ -10,7 +10,6 @@ export const profile = {
   photoUrl: '/images/profile.jpg',
   socials: {
     github: 'https://github.com/anujsingh3005',
-    linkedin: 'https://linkedin.com/in/your-profile',
-    twitter: 'https://x.com/your-handle',
+    linkedin: 'https://www.linkedin.com/in/anujsingh-ai-ml/',
   },
 };
