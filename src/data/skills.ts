@@ -10,46 +10,61 @@ export interface SkillCategory {
   items: SkillItem[];
 }
 
-// TODO: adjust to your real skill set.
 export const skillCategories: SkillCategory[] = [
   {
-    category: 'Frontend',
+    category: 'Languages',
     items: [
+      { name: 'Python', badge: 'python' },
+      { name: 'Java', badge: 'java' },
+      { name: 'JavaScript', badge: 'js' },
+      { name: 'TypeScript', badge: 'ts' },
       { name: 'HTML', badge: 'html' },
       { name: 'CSS', badge: 'css' },
-      { name: 'JavaScript', badge: 'js' },
+      { name: 'C', badge: 'c' },
+      { name: 'C++', badge: 'cplusplus' },
+    ],
+  },
+  {
+    category: 'Frameworks & Libraries',
+    items: [
       { name: 'React', badge: 'react' },
-      { name: 'Angular', badge: 'angular' },
       { name: 'React Native', badge: 'reactnative' },
-      { name: 'Flutter', badge: 'flutter' },
-    ],
-  },
-  {
-    category: 'Backend',
-    items: [
       { name: 'Node.js', badge: 'node' },
+      { name: 'Express.js', badge: 'express' },
+      { name: 'Flutter', badge: 'flutter' },
       { name: 'Spring Boot', badge: 'springboot' },
-      { name: 'Python', badge: 'python' },
+      { name: 'Bootstrap', badge: 'bootstrap' },
+      { name: 'jQuery', badge: 'jquery' },
     ],
   },
   {
-    category: 'Database',
+    category: 'Databases',
     items: [
-      { name: 'SQL', badge: 'sql' },
       { name: 'PostgreSQL', badge: 'postgres' },
       { name: 'MongoDB', badge: 'mongo' },
-      { name: 'Firebase', badge: 'firebase' },
+      { name: 'MySQL', badge: 'mysql' },
     ],
   },
   {
-    category: 'Tools',
+    category: 'Tools & Infrastructure',
     items: [
-      { name: 'Git', badge: 'git' },
-      { name: 'GitHub', badge: 'github' },
       { name: 'Docker', badge: 'docker' },
+      { name: 'Redis', badge: 'redis' },
+      { name: 'Nginx', badge: 'nginx' },
       { name: 'AWS', badge: 'aws' },
-      { name: 'VS Code', badge: 'vscode' },
+      { name: 'GitHub', badge: 'github' },
       { name: 'Postman', badge: 'postman' },
+      { name: 'Figma', badge: 'figma' },
+      { name: 'Power BI', badge: 'powerbi' },
+    ],
+  },
+  {
+    category: 'AI / ML Stack',
+    items: [
+      { name: 'FastAPI', badge: 'fastapi' },
+      { name: 'LangGraph', badge: 'langgraph' },
+      { name: 'Ollama', badge: 'ollama' },
+      { name: 'ChromaDB', badge: 'chromadb' },
     ],
   },
 ];

@@ -13,23 +13,26 @@ export interface EducationItem {
   semesters?: SemesterResult[];
 }
 
-// TODO: replace with your real education, most recent first. `semesters` is
-// the per-semester CGPA breakdown — update the values and, once you have
-// them, set `scorecardImage` per semester (e.g. "/images/scorecards/sem-1.jpg")
-// to make that semester's tile open the scanned scorecard in the lightbox.
+// TODO: `period` is inferred from "final-year" + 6 completed semesters —
+// confirm your actual start/end years. `semesters` CGPA values are still
+// placeholders; swap in your real per-semester CGPA and, once you have
+// scorecard scans, set `scorecardImage` per semester (e.g.
+// "/images/scorecards/sem-1.jpg") to make that tile open it in the lightbox.
 export const education: EducationItem[] = [
   {
-    degree: 'B.Tech, Computer Science',
-    institution: 'University Name',
-    period: '2020 — 2024',
-    score: 'CGPA: 8.5 / 10',
+    degree: 'B.Tech, Artificial Intelligence & Machine Learning',
+    institution: 'Thakur College of Engineering & Technology (TCET), Mumbai',
+    period: '2023 — 2027 (Expected)',
+    score: 'CGPA: 8.45 / 10 (through Sem 6)',
     coursework: [
-      'Data Structures',
-      'Algorithms',
+      'Data Structures & Algorithms',
+      'Machine Learning',
+      'Artificial Intelligence',
+      'Database Management Systems',
+      'Deep Learning / Neural Networks',
       'Operating Systems',
-      'Database Systems',
-      'Computer Networks',
-      'Object-Oriented Programming',
+      'Probability & Statistics',
+      'System Design',
     ],
     semesters: [
       { label: 'Sem 1', cgpa: '8.2' },
@@ -38,8 +41,6 @@ export const education: EducationItem[] = [
       { label: 'Sem 4', cgpa: '8.6' },
       { label: 'Sem 5', cgpa: '8.5' },
       { label: 'Sem 6', cgpa: '8.7' },
-      { label: 'Sem 7', cgpa: '8.8' },
-      { label: 'Sem 8', cgpa: '8.9' },
     ],
   },
 ];

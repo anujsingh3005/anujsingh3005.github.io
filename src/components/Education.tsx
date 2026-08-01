@@ -43,7 +43,7 @@ export function Education() {
                   <p className="mb-3 text-sm font-medium uppercase tracking-wide text-[var(--color-text-muted)]">
                     Semester-wise CGPA
                   </p>
-                  <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-8">
+                  <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-6">
                     {item.semesters.map((sem) => {
                       const clickable = Boolean(sem.scorecardImage);
                       return (
