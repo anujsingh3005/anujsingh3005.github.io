@@ -1,40 +1,35 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { CheckCircle2, Loader2, Mail, XCircle } from 'lucide-react';
+import { CheckCircle2, Mail } from 'lucide-react';
 import { profile } from '../data/profile';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 import { Reveal } from './Reveal';
 
-// TODO: create a free form at https://formspree.io (or https://web3forms.com)
-// and replace this endpoint with your own form ID, e.g.
-// "https://formspree.io/f/xxxxabcd". Until this is set, submissions will fail.
-const FORM_ENDPOINT = 'https://formspree.io/f/your-form-id';
+type Status = 'idle' | 'sent';
 
-type Status = 'idle' | 'submitting' | 'success' | 'error';
+function buildMailto(name: string, email: string, message: string) {
+  const subject = `Portfolio contact from ${name}`;
+  const body = `${message}\n\n— ${name} (${email})`;
+  return `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle');
+  const [lastMailto, setLastMailto] = useState('');
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('submitting');
     const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '');
+    const email = String(data.get('email') ?? '');
+    const message = String(data.get('message') ?? '');
 
-    try {
-      const response = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
-      if (response.ok) {
-        setStatus('success');
-        form.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
+    const mailtoUrl = buildMailto(name, email, message);
+    setLastMailto(mailtoUrl);
+    window.location.href = mailtoUrl;
+    setStatus('sent');
+    form.reset();
   };
 
   return (
@@ -53,22 +48,30 @@ export function Contact() {
 
       <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2">
         <Reveal delay={0.1}>
-          {status === 'success' ? (
+          {status === 'sent' ? (
             <div className="flex h-full min-h-[280px] flex-col items-center justify-center gap-3 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-center">
               <CheckCircle2 size={32} className="text-[var(--color-accent)]" />
               <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-[var(--color-text)]">
-                Message sent
+                Your email app should be open
               </p>
               <p className="text-sm text-[var(--color-text-muted)]">
-                Thanks for reaching out — I'll get back to you soon.
+                Your message is pre-filled and addressed to {profile.email} — just hit send from there.
               </p>
-              <button
-                type="button"
-                onClick={() => setStatus('idle')}
-                className="mt-2 text-sm font-medium text-[var(--color-accent)] hover:opacity-80"
-              >
-                Send another message
-              </button>
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href={lastMailto}
+                  className="text-sm font-medium text-[var(--color-accent)] hover:opacity-80"
+                >
+                  Didn't open? Try again
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setStatus('idle')}
+                  className="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
+                >
+                  Write a new message
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -96,23 +99,16 @@ export function Contact() {
                 className="resize-none rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-[var(--color-text)] outline-none transition-colors placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)]"
               />
 
-              <div className="flex flex-wrap items-center gap-4">
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="inline-flex items-center gap-2 self-start rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-[var(--color-bg)] transition-transform hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
-                >
-                  {status === 'submitting' && <Loader2 size={16} className="animate-spin" />}
-                  {status === 'submitting' ? 'Sending…' : 'Send message'}
-                </button>
-
-                {status === 'error' && (
-                  <p className="flex items-center gap-1.5 text-sm text-[var(--color-text-muted)]">
-                    <XCircle size={15} />
-                    Something went wrong — email me directly instead.
-                  </p>
-                )}
-              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 self-start rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-[var(--color-bg)] transition-transform hover:scale-105"
+              >
+                <Mail size={16} />
+                Send message
+              </button>
+              <p className="text-xs text-[var(--color-text-muted)]">
+                Opens your email app with this filled in — nothing is sent until you hit send there.
+              </p>
             </form>
           )}
         </Reveal>
